@@ -11,7 +11,7 @@ class StoreCastRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,9 @@ class StoreCastRequest extends FormRequest
     {
         return [
             //
+            'name' => 'required|string',
+            'bio' => 'required|string',
+            'age' => 'required|integer',
         ];
     }
 }

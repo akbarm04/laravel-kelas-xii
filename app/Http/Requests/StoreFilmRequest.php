@@ -11,7 +11,7 @@ class StoreFilmRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,11 @@ class StoreFilmRequest extends FormRequest
     {
         return [
             //
+            'title' => 'required',
+            'sinopsis' => 'required',
+            'year' => 'required|integer',
+            'poster' => 'required|image|mimes:webp,jpeg,png,jpg,gif,svg|max:2048',
+            'genre_id' => 'required|exists:genres,id'
         ];
     }
 }
