@@ -11,7 +11,7 @@ class UpdateCastRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,9 @@ class UpdateCastRequest extends FormRequest
     {
         return [
             //
+            'name'  => 'required|string|max:255',
+            'bio'  => 'required|string',
+            'age'  => 'required|integer',
         ];
     }
 }
