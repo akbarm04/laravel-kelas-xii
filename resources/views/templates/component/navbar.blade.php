@@ -36,6 +36,7 @@
               </ul>
             </li>
             <li class="w3_home_act {{ Route::current()->getName() == 'movies' ? 'active' : '' }}"><a href="{{ route('movies') }}">Movies</a></li>
+            <li class="w3_home_act {{ Route::current()->getName() == 'cast' ? 'active' : '' }}"><a href="{{ route('cast.index') }}">Cast</a></li>
 
           </ul>
         </nav>
