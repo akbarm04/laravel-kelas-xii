@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
     @include('templates.component.head')
+    <style>
+        /* Tambahkan styling untuk scroll horizontal */
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
 </head>
 <body>
     @include('templates.component.header')
@@ -23,44 +29,48 @@
         <h1 class="text-center mb-4">Cast List</h1>
         <a href="{{ route('cast.create') }}" class="btn btn-success mb-3">Tambah Cast</a>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID CASTS</th>
-                    <th>NAME</th> 
-                    <th>BIO</th>
-                    <th>AGE</th>
-                    <th>Actions</th> <!-- Added this header for actions -->
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($casts as $cast)
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td>{{ $cast->id }}</td>
-                        <td>{{ $cast->name }}</td>
-                        <td>{{ $cast->bio }}</td>
-                        <td>{{ $cast->age }}</td>
-                     
-                        </td>
-                        <td>
-                            <!-- Example actions; adjust as needed -->
-                            <a href="{{ route('cast.show', $cast->id) }}" class="btn btn-info btn-sm">View</a>
-                            <a href="{{ route('cast.edit', $cast->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                             <form action="{{ route('cast.destroy', $cast->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
-                                </form>
-                        </td>
+                        <th>ID CASTS</th>
+                        <th>NAME</th> 
+                        <th>BIO</th>
+                        <th>AGE</th>
+                        <th>Actions</th>
                     </tr>
-                @endforeach
+                </thead>
+                <tbody>
+                    @foreach($casts as $cast)
+                        <tr>
+                            <td>{{ $cast->id }}</td>
+                            <td>{{ $cast->name }}</td>
+                            <td>{{ $cast->bio }}</td>
+                            <td>{{ $cast->age }}</td>
+                            <td>
+                                <a href="{{ route('cast.show', $cast->id) }}" class="btn btn-info btn-sm">View</a>
+                                <a href="{{ route('cast.edit', $cast->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('cast.destroy', $cast->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
 
-                <!-- Example of an additional row below existing data -->
-                <tr>
-                    <td colspan="7" class="text-center">No more cast to display</td> <!-- Adjust colspan to match the number of columns -->
-                </tr>
-            </tbody>
-        </table>
+                    <!-- Row tambahan jika data cast habis -->
+                    @if($casts->isEmpty())
+                        <tr>
+                            <td colspan="5" class="text-center">No more cast to display</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tambahkan pagination -->
+        {{ $casts->links() }}
     </div>
 
     @include('templates.component.footer')
