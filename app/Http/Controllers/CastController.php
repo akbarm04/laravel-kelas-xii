@@ -13,8 +13,8 @@ class CastController extends Controller
     {
         //
         $casts = Cast::select('id', 'name', 'bio', 'age')
-        ->orderBy('created_at', 'asc')
-        ->paginate(18);
+            ->orderBy('created_at', 'asc')
+            ->paginate(18);
 
         return view('components.movies', compact('casts'));
     }
@@ -45,6 +45,9 @@ class CastController extends Controller
      */
     public function store(StoreCastRequest $request)
     {
+        $cast = Cast::create($request->validated());
+
+        return redirect()->route('cast.index')->with('success', 'Cast created successfully.');
         $cast = Cast::create($request->validated());
 
         return redirect()->route('cast.index')->with('success', 'Cast created successfully.');
@@ -93,9 +96,13 @@ class CastController extends Controller
     {
         // Hapus data peran yang terkait
         $cast->perans()->delete();
+        // Hapus data peran yang terkait
+        $cast->perans()->delete();
 
         $cast->delete();
+        $cast->delete();
 
+        return redirect()->route('cast.index')->with('success', 'Berhasil menghapus data CAST');
         return redirect()->route('cast.index')->with('success', 'Berhasil menghapus data CAST');
     }
 }
