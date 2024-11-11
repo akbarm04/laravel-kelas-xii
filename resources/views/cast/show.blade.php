@@ -28,7 +28,7 @@
     <h1 class="text-center mb-4">Detail Cast</h1>
     <div class="card">
         <div class="card-header">
-            <h2>{{ $cast->id}}</h2>
+            <h2>{{ $cast->name}}</h2>
         </div>
         <div class="card-body">
             <p><strong>Nama:</strong> {{ $cast->name }}</p>
@@ -39,7 +39,23 @@
             <a href="{{ route('cast.index') }}" class="btn btn-sm btn-info">Kembali</a>
         </div>
     </div>
-
+<!-- Daftar Film yang Diperankan -->
+<h3 class="mt-5">Film yang Diperankan</h3>
+    <div class="row">
+        @forelse($films as $film)
+            <div class="col-md-4 mb-5">
+                <div class="card mb-4">
+                <img src="/{{ $film->film->poster }}" class="card-img-top" alt="{{ $film->film->title }}">
+                <div class="card-body">
+                        <h5 class="card-title">{{ $film->film->title }}</h5>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <p>Belum ada film yang diperankan oleh cast ini.</p>
+        @endforelse
+    </div>
+</div>
 <!-- footer -->
 @include('templates.component.footer')
 <!-- //footer -->
