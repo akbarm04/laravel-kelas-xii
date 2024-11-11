@@ -21,7 +21,7 @@ class UpdateCastRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        return [    
             //
             'name'  => 'required|string|max:255',
             'bio'  => 'required|string',

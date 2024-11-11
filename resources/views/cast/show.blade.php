@@ -25,21 +25,21 @@
 </div>
 <!-- /w3l-medile-movies-grids -->
 <div class="container mt-5">
-	<h1 class="text-center mb-4">Detail Cast</h1>
-	<div class="card">
-		<div class="card-header">
-			<h2>{{ $cast->id}}</h2>
-		</div>
-		<div class="card-body">
-			<p><strong>Nama:</strong> {{ $cast->name }}</p>
-			<p><strong>Bio:</strong> {{ $cast->bio }}</p>
-			<p><strong>Age:</strong> {{ $cast->age }}</p>
-		</div>
-		<div class="card-footer">
-			<a href="{{ route('cast.index') }}" class="btn btn-sm btn-info">Kembali</a>
-		</div>
-	</div>
-</div>
+    <h1 class="text-center mb-4">Detail Cast</h1>
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ $cast->id}}</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Nama:</strong> {{ $cast->name }}</p>
+            <p><strong>Bio:</strong> {{ $cast->bio }}</p>
+            <p><strong>Age:</strong> {{ $cast->age }}</p>
+        </div>
+        <div class="card-footer">
+            <a href="{{ route('cast.index') }}" class="btn btn-sm btn-info">Kembali</a>
+        </div>
+    </div>
+
 <!-- footer -->
 @include('templates.component.footer')
 <!-- //footer -->
